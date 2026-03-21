@@ -14,7 +14,7 @@ export default function HomePage() {
             setIsScrolled(window.scrollY > 20);
 
             // Update active section based on scroll position
-            const sections = ["home", "about", "programs", "manuscripts", "contact"];
+            const sections = ["home", "about", "manuscripts", "contact"];
             for (const sectionId of sections.reverse()) {
                 const el = document.getElementById(sectionId);
                 if (el && window.scrollY >= el.offsetTop - 120) {
@@ -30,8 +30,6 @@ export default function HomePage() {
     const navLinks = [
         { href: "#home", label: "Home" },
         { href: "#about", label: "About" },
-        { href: "#programs", label: "Programs" },
-        { href: "#research", label: "Research" },
         { href: "#manuscripts", label: "Manuscripts" },
         { href: "#contact", label: "Contact" },
     ];
@@ -101,19 +99,6 @@ export default function HomePage() {
 
                         {/* CTA + Mobile toggle */}
                         <div className="flex items-center gap-3">
-                            <a
-                                href="https://manuscripts.ikskochi.org"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={`hidden md:inline-flex items-center font-bold text-sm transition-all duration-200 tracking-wide ${
-                                    isScrolled
-                                        ? "px-4 py-2 bg-amber-900 text-white rounded-xl hover:bg-amber-800 shadow-sm hover:shadow-md"
-                                        : "px-5 py-2.5 bg-amber-900 text-white rounded-xl hover:bg-amber-800 shadow-md hover:shadow-lg"
-                                }`}
-                            >
-                                Access Portal
-                            </a>
-
                             {/* Mobile Menu Button */}
                             <button
                                 className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
@@ -158,28 +143,17 @@ export default function HomePage() {
                                     </a>
                                 );
                             })}
-                            <div className="pt-2 border-t border-stone-100 mt-2">
-                                <a
-                                    href="https://manuscripts.ikskochi.org"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-center w-full px-6 py-3 bg-amber-900 text-white rounded-xl text-center font-bold text-sm hover:bg-amber-800 transition-colors shadow-sm"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    Access Portal
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </nav>
             </div>
 
             {/* ─── Hero Section ───────────────────────────────────────── */}
-            <section id="home" className="relative min-h-[75vh] flex items-center pt-32 pb-16 overflow-hidden" style={{ background: "radial-gradient(ellipse 100% 100% at 50% 0%, #fef3c7 0%, #fdf8f0 40%, #f5f0e8 80%, #ede8dd 100%)" }}>
+            <section id="home" className="relative md:min-h-[75vh] flex items-center pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden" style={{ background: "radial-gradient(ellipse 100% 100% at 50% 0%, #fef3c7 0%, #fdf8f0 40%, #f5f0e8 80%, #ede8dd 100%)" }}>
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wMikiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
                 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className="grid lg:grid-cols-12 gap-16 lg:gap-8 items-center">
+                    <div className="grid lg:grid-cols-12 gap-12 md:gap-16 lg:gap-8 items-center">
                         {/* Left Content */}
                         <div className="lg:col-span-7 flex flex-col items-start text-left">
                             <div className="animate-fade-up inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-stone-200/50 rounded-full text-stone-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
@@ -187,12 +161,12 @@ export default function HomePage() {
                                 Centre of Excellence
                             </div>
                             
-                            <h1 className="animate-fade-up-delay-1 text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-stone-900 mb-8 leading-[1.05] tracking-tight">
+                            <h1 className="animate-fade-up-delay-1 text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-stone-900 mb-6 md:mb-8 leading-[1.05] tracking-tight">
                                 Indian<br />
                                 Knowledge <span className="text-amber-900 italic font-serif pr-2">Systems</span>
                             </h1>
                             
-                            <p className="animate-fade-up-delay-2 text-lg md:text-xl text-stone-600 mb-10 max-w-xl leading-relaxed font-light">
+                            <p className="animate-fade-up-delay-2 text-base md:text-xl text-stone-600 mb-8 md:mb-10 max-w-xl leading-relaxed font-light">
                                 Amrita Vishwa Vidyapeetham, Kochi Campus invites you to explore the scientific, philosophical, and artistic heritage of ancient India through rigorous academic research and digital preservation.
                             </p>
                             
@@ -210,12 +184,6 @@ export default function HomePage() {
                                         </svg>
                                     </span>
                                 </a>
-                                <a
-                                    href="#programs"
-                                    className="inline-flex items-center justify-center px-8 py-4 bg-white/50 backdrop-blur-md text-stone-800 border border-stone-200/50 rounded-full font-semibold text-sm hover:bg-white hover:border-stone-300 transition-all duration-300"
-                                >
-                                    View Programs
-                                </a>
                             </div>
                         </div>
                         
@@ -223,13 +191,11 @@ export default function HomePage() {
                         <div className="lg:col-span-5 grid grid-cols-2 gap-4 animate-fade-up-delay-2">
                             {[
                                 { number: "5,000+", label: "Archived Manuscripts", color: "bg-white", textCol: "text-amber-900" },
-                                { number: "120+", label: "Research Publications", color: "bg-amber-50", textCol: "text-amber-900" },
-                                { number: "15", label: "Academic Programs", color: "bg-stone-900", textCol: "text-white", labelCol: "text-stone-400" },
-                                { number: "25", label: "Years of Research", color: "bg-white", textCol: "text-stone-900" },
+                                { number: "25", label: "Years of Excellence", color: "bg-amber-50", textCol: "text-amber-900" },
                             ].map((stat, i) => (
-                                <div key={i} className={`${stat.color} p-8 rounded-3xl border ${stat.color === 'bg-stone-900' ? 'border-stone-800' : 'border-stone-200/50'} shadow-sm flex flex-col justify-center min-h-[160px] md:min-h-[200px] group hover:-translate-y-1 transition-transform duration-300`}>
-                                    <div className={`text-4xl md:text-5xl font-black mb-3 tracking-tight ${stat.textCol}`}>{stat.number}</div>
-                                    <div className={`text-xs font-bold uppercase tracking-widest ${stat.labelCol || 'text-stone-500'} leading-snug`}>{stat.label}</div>
+                                <div key={i} className={`${stat.color} p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl md:rounded-3xl border ${stat.color === 'bg-stone-900' ? 'border-stone-800' : 'border-stone-200/50'} shadow-sm flex flex-col justify-center min-h-[70px] md:min-h-[160px] lg:min-h-[200px] group hover:-translate-y-1 transition-transform duration-300`}>
+                                    <div className={`text-2xl md:text-4xl lg:text-5xl font-black mb-0.5 md:mb-2 tracking-tight ${stat.textCol}`}>{stat.number}</div>
+                                    <div className={`text-[8px] md:text-[10px] lg:text-xs font-bold uppercase tracking-widest text-stone-500 leading-snug`}>{stat.label}</div>
                                 </div>
                             ))}
                         </div>
@@ -238,10 +204,10 @@ export default function HomePage() {
             </section>
 
             {/* ─── About Section ──────────────────────────────────────── */}
-            <section id="about" className="py-20 bg-white relative">
+            <section id="about" className="py-16 md:py-20 bg-white relative">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Top Editorial Row */}
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-16">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-10 mb-10 md:mb-16">
                         <div className="md:w-5/12">
                             <div className="flex items-center gap-3 mb-8">
                                 <span className="w-2 h-2 rounded-full bg-amber-600" />
@@ -297,115 +263,29 @@ export default function HomePage() {
                                 ),
                             },
                         ].map((item, i) => (
-                            <div key={i} className="group p-10 rounded-[2rem] bg-stone-50 hover:bg-stone-900 transition-colors duration-500 flex flex-col h-full border border-stone-100 hover:border-stone-900 cursor-default">
-                                <div className="w-14 h-14 rounded-2xl bg-white text-stone-900 flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-500">
-                                    {item.icon}
+                            <div key={i} className="group p-4 md:p-8 lg:p-10 rounded-xl md:rounded-[2rem] bg-stone-50 hover:bg-stone-900 transition-colors duration-500 flex flex-col h-full border border-stone-100 hover:border-stone-900 cursor-default">
+                                <div className="w-8 h-8 md:w-14 md:h-14 rounded-lg md:rounded-2xl bg-white text-stone-900 flex items-center justify-center mb-3 md:mb-8 shadow-sm group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all duration-500">
+                                    <div className="scale-75 md:scale-100">{item.icon}</div>
                                 </div>
-                                <h3 className="text-xl font-bold text-stone-900 group-hover:text-white mb-3 transition-colors duration-500">{item.title}</h3>
-                                <p className="text-stone-500 group-hover:text-stone-400 leading-relaxed transition-colors duration-500">{item.desc}</p>
+                                <h3 className="text-base md:text-xl font-bold text-stone-900 group-hover:text-white mb-1.5 md:mb-3 transition-colors duration-500">{item.title}</h3>
+                                <p className="text-[13px] md:text-base text-stone-500 group-hover:text-stone-400 leading-snug md:leading-relaxed transition-colors duration-500">{item.desc}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* ─── Programs Section ───────────────────────────────────── */}
-            <section id="programs" className="py-20 relative bg-stone-50 border-t border-stone-200/50">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNCkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent_80%)]" />
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Section header */}
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-8 border-b border-stone-200">
-                        <div className="max-w-2xl">
-                            <div className="flex items-center gap-3 mb-6">
-                                <span className="w-2 h-2 rounded-full bg-amber-600" />
-                                <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">What We Offer</span>
-                            </div>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-stone-900 tracking-tight">Academic Programs</h2>
-                        </div>
-                        <p className="text-stone-500 text-lg font-light leading-relaxed max-w-sm md:text-right">
-                            Comprehensive curricula designed to foster deep understanding of traditional knowledge systems.
-                        </p>
-                    </div>
 
-                    {/* Program cards - Mixed Bento Grid */}
-                    <div className="grid md:grid-cols-3 gap-6">
-                        {[
-                            {
-                                title: "Master of Arts in Sanskrit",
-                                focus: "Literature & Grammar",
-                                duration: "2 Years",
-                                desc: "An advanced exploration of classical Sanskrit literature, Paninian grammar, and literary criticism.",
-                                colorClasses: "bg-white border-stone-200 hover:border-amber-300",
-                                textTitle: "text-stone-900 group-hover:text-amber-900",
-                                textDesc: "text-stone-500",
-                                iconBg: "bg-amber-50 text-amber-900 border border-amber-100",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            },
-                            {
-                                title: "Ph.D. in Indian Knowledge Systems",
-                                focus: "Interdisciplinary Research",
-                                duration: "3-5 Years",
-                                desc: "Research-focused program investigating scientific and philosophical concepts in ancient texts.",
-                                colorClasses: "bg-white border-stone-200 hover:border-amber-300",
-                                textTitle: "text-stone-900 group-hover:text-amber-900",
-                                textDesc: "text-stone-500",
-                                iconBg: "bg-amber-50 text-amber-900 border border-amber-100",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                            },
-                            {
-                                title: "Diploma in Vedic Sciences",
-                                focus: "Foundational Studies",
-                                duration: "1 Year",
-                                desc: "A rigorous introduction to the Vedas, Vedangas, and their contemporary relevance.",
-                                colorClasses: "bg-white border-stone-200 hover:border-amber-300",
-                                textTitle: "text-stone-900 group-hover:text-amber-900",
-                                textDesc: "text-stone-500",
-                                iconBg: "bg-amber-50 text-amber-900 border border-amber-100",
-                                icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            },
-                        ].map((prog, index) => (
-                            <div
-                                key={index}
-                                className={`group rounded-[2.5rem] border transition-all duration-300 flex flex-col p-8 lg:p-10 ${prog.colorClasses} shadow-sm hover:shadow-xl hover:-translate-y-1 cursor-default`}
-                            >
-                                <div className="flex justify-between items-start mb-16">
-                                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-500 ${prog.iconBg}`}>
-                                        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            {prog.icon}
-                                        </svg>
-                                    </div>
-                                    <div className={`flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase ${prog.textDesc}`}>
-                                        <svg className="w-4 h-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                        <span>{prog.duration}</span>
-                                    </div>
-                                </div>
-                                
-                                <div className="mt-auto">
-                                    <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full mb-6 bg-white/80 text-amber-900 border border-amber-200/50">
-                                        {prog.focus}
-                                    </span>
-                                    <h3 className={`text-2xl lg:text-3xl font-black mb-4 leading-tight transition-colors duration-300 ${prog.textTitle}`}>
-                                        {prog.title}
-                                    </h3>
-                                    <p className={`text-base leading-relaxed ${prog.textDesc}`}>
-                                        {prog.desc}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* ─── Manuscripts Section (Light Mode Design) ─────────────── */}
-            <section id="manuscripts" className="py-20 bg-[#F5F2EA] text-stone-900 relative overflow-hidden">
+            <section id="manuscripts" className="py-16 md:py-20 bg-[#F5F2EA] text-stone-900 relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wNCkiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent_80%)]" />
                 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Section header */}
-                    <div className="flex flex-col lg:flex-row justify-between lg:items-end gap-8 mb-12 border-b border-stone-200 pb-8">
+                    <div className="flex flex-col lg:flex-row justify-between lg:items-end gap-6 md:gap-8 mb-8 pb-6 md:mb-12 border-b border-stone-200 md:pb-8">
                         <div className="max-w-2xl">
-                            <div className="flex items-center gap-3 mb-8">
+                            <div className="flex items-center gap-3 mb-4 md:mb-8">
                                 <span className="w-2 h-2 rounded-full bg-amber-600" />
                                 <span className="text-stone-500 font-bold text-xs uppercase tracking-widest">Digital Archive</span>
                             </div>
@@ -437,20 +317,20 @@ export default function HomePage() {
                             { title: "Charaka Samhita", type: "Paper Transcript", age: "18th Century", cat: "Ayurveda" },
                             { title: "Suryasiddhanta", type: "Palm Leaf", age: "17th Century", cat: "Astronomy" },
                         ].map((item, i) => (
-                            <div key={i} className="group flex flex-col bg-white rounded-3xl border border-stone-200 hover:border-amber-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden cursor-default">
-                                <div className="h-64 bg-stone-100 relative overflow-hidden flex items-center justify-center group-hover:bg-amber-50 transition-colors duration-500">
+                            <div key={i} className="group flex flex-col bg-white rounded-xl md:rounded-3xl border border-stone-200 hover:border-amber-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-500 overflow-hidden cursor-default">
+                                <div className="h-28 md:h-48 lg:h-64 bg-stone-100 relative overflow-hidden flex items-center justify-center group-hover:bg-amber-50 transition-colors duration-500">
                                     <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23000'/%3E%3C/svg%3E")`, backgroundSize: "20px 20px" }} />
-                                    <svg className="w-16 h-16 text-stone-300 group-hover:text-amber-500/50 group-hover:scale-110 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                                    <svg className="w-8 h-8 md:w-16 md:h-16 text-stone-300 group-hover:text-amber-500/50 group-hover:scale-110 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                                 </div>
-                                <div className="p-8">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-amber-800 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-100">
+                                <div className="p-4 md:p-8">
+                                    <div className="flex items-center justify-between mb-2 md:mb-4">
+                                        <span className="text-[8px] md:text-[10px] font-bold tracking-[0.2em] uppercase text-amber-800 bg-amber-50 px-1.5 py-0.5 md:px-3 md:py-1.5 rounded-full border border-amber-100">
                                             {item.cat}
                                         </span>
-                                        <span className="text-xs text-stone-400 font-bold tracking-widest uppercase">{item.age}</span>
+                                        <span className="text-[8px] md:text-xs text-stone-400 font-bold tracking-widest uppercase">{item.age}</span>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-2 group-hover:text-amber-900 transition-colors">{item.title}</h3>
-                                    <p className="text-stone-500 font-light">{item.type}</p>
+                                    <h3 className="text-lg md:text-2xl font-bold text-stone-900 mb-0.5 md:mb-2 group-hover:text-amber-900 transition-colors">{item.title}</h3>
+                                    <p className="text-[13px] md:text-base text-stone-500 font-light leading-snug">{item.type}</p>
                                 </div>
                             </div>
                         ))}
@@ -459,23 +339,23 @@ export default function HomePage() {
             </section>
 
             {/* ─── Contact Section ────────────────────────────────────── */}
-            <section id="contact" className="py-20 bg-stone-50 border-t border-stone-200/50">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-white rounded-[3rem] border border-stone-200 shadow-2xl shadow-stone-200/30 py-16 px-6 md:px-12">
-                    <div className="flex items-center justify-center gap-3 mb-8">
+            <section id="contact" className="py-12 md:py-20 bg-stone-50 border-t border-stone-200/50">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-white rounded-3xl md:rounded-[3rem] border border-stone-200 shadow-xl md:shadow-2xl shadow-stone-200/30 py-10 md:py-16 px-5 md:px-12">
+                    <div className="flex items-center justify-center gap-3 mb-4 md:mb-8">
                         <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
                         <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
                     </div>
-                    <h2 className="text-5xl md:text-6xl font-black text-stone-900 mb-6 tracking-tight">Let's Connect</h2>
-                    <p className="text-stone-500 text-xl font-light mb-12 leading-relaxed max-w-2xl mx-auto">
-                        Reach out to learn more about our academic programs, explore manuscript archives, or discuss research collaborations.
+                    <h2 className="text-4xl md:text-6xl font-black text-stone-900 mb-4 md:mb-6 tracking-tight">Let's Connect</h2>
+                    <p className="text-stone-500 text-base md:text-xl font-light mb-8 md:mb-12 leading-relaxed max-w-2xl mx-auto">
+                        Reach out to learn more about our manuscript archives and digital preservation efforts.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
                         <a
-                            href="mailto:iks@amrita.edu"
+                            href="mailto:iks@kh.amrita.edu"
                             className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-amber-900 text-white rounded-full font-bold text-sm hover:bg-amber-800 transition-all shadow-xl shadow-amber-900/10 hover:shadow-amber-900/20 hover:-translate-y-1"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                            iks@amrita.edu
+                            iks@kh.amrita.edu
                         </a>
                         <a
                             href="tel:+918547619314"
@@ -490,10 +370,10 @@ export default function HomePage() {
 
             {/* ─── Footer ─────────────────────────────────────────────── */}
             <footer className="bg-stone-950 text-stone-400 text-sm">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 md:pt-16 md:pb-10">
 
                     {/* Top grid */}
-                    <div className="grid md:grid-cols-4 gap-12 mb-14 pb-14 border-b border-stone-800">
+                    <div className="grid md:grid-cols-4 gap-8 md:gap-12 mb-10 pb-10 md:mb-14 md:pb-14 border-b border-stone-800">
 
                         {/* Brand */}
                         <div className="col-span-1 md:col-span-2">
@@ -544,8 +424,6 @@ export default function HomePage() {
                             <h4 className="text-stone-100 font-bold mb-6 uppercase tracking-[0.14em] text-xs">Menu</h4>
                             <ul className="space-y-3.5">
                                 <li><a href="#about" className="hover:text-amber-500 transition-colors">About Us</a></li>
-                                <li><a href="#programs" className="hover:text-amber-500 transition-colors">Academic Programs</a></li>
-                                <li><a href="#research" className="hover:text-amber-500 transition-colors">Research Areas</a></li>
                                 <li><a href="#manuscripts" className="hover:text-amber-500 transition-colors">Manuscript Archive</a></li>
                             </ul>
                         </div>
@@ -555,7 +433,7 @@ export default function HomePage() {
                             <h4 className="text-stone-100 font-bold mb-6 uppercase tracking-[0.14em] text-xs">Contact</h4>
                             <ul className="space-y-3.5">
                                 <li>
-                                    <a href="mailto:iks@amrita.edu" className="hover:text-amber-500 transition-colors">iks@amrita.edu</a>
+                                    <a href="mailto:iks@kh.amrita.edu" className="hover:text-amber-500 transition-colors">iks@kh.amrita.edu</a>
                                 </li>
                                 <li>
                                     <a href="tel:+918547619314" className="hover:text-amber-500 transition-colors">+91 8547619314</a>
@@ -577,9 +455,13 @@ export default function HomePage() {
                         <p className="text-stone-600 text-xs">
                             © {new Date().getFullYear()} Amrita Vishwa Vidyapeetham. All rights reserved.
                         </p>
-                        <div className="flex gap-6">
+                        <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
                             <a href="#" className="text-stone-600 hover:text-stone-300 transition-colors text-xs">Privacy Policy</a>
                             <a href="#" className="text-stone-600 hover:text-stone-300 transition-colors text-xs">Terms of Use</a>
+                            <a href="/admin" className="text-stone-600 bg-stone-900 border border-stone-800 hover:text-amber-500 hover:border-amber-500/30 transition-colors text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded flex items-center gap-1.5 ring-1 ring-white/5">
+                                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z" /></svg>
+                                Admin Portal
+                            </a>
                         </div>
                     </div>
                 </div>
