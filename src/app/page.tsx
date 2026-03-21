@@ -31,6 +31,7 @@ export default function HomePage() {
         { href: "#home", label: "Home" },
         { href: "#about", label: "About" },
         { href: "#manuscripts", label: "Manuscripts" },
+        { href: "/events", label: "Events" },
         { href: "#contact", label: "Contact" },
     ];
 
