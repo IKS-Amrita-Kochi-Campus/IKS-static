@@ -8,6 +8,13 @@ export default function HomePage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const carouselImages = [
+        "/assets/carousel/img1.jpg",
+        "/assets/carousel/img2.jpg",
+        "/assets/carousel/img3.jpg"
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,7 +31,16 @@ export default function HomePage() {
             }
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
+        
+        // Carousel interval
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+        }, 4000);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            clearInterval(timer);
+        };
     }, []);
 
     const navLinks = [
@@ -40,12 +56,10 @@ export default function HomePage() {
 
             {/* ─── Navigation ─────────────────────────────────────────── */}
             {/* Wrapper: full-width fixed strip */}
-            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "pt-3 pb-0 px-4 sm:px-6" : ""}`}>
+            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6`}>
                 <nav
-                    className={`transition-all duration-500 ${
-                        isScrolled
-                            ? "max-w-5xl mx-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg shadow-stone-200/60 ring-1 ring-stone-200/80 px-5"
-                            : "bg-transparent px-4 sm:px-6 lg:px-8 border-b border-white/20"
+                    className={`transition-all duration-500 max-w-5xl mx-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-5 ${
+                        isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
                     }`}
                 >
                     <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
@@ -67,7 +81,7 @@ export default function HomePage() {
                                 />
                             </div>
                             <div className="leading-none">
-                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 ${isScrolled ? "text-base" : "text-lg"}`}>IKS Amrita</p>
+                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 ${isScrolled ? "text-base" : "text-lg"}`}>Indian Knowledge Systems, Amrita (IKS)</p>
                                 {!isScrolled && (
                                     <p className="text-[10px] uppercase tracking-[0.18em] text-stone-400 font-semibold mt-0.5">Kochi Campus</p>
                                 )}
@@ -150,57 +164,75 @@ export default function HomePage() {
             </div>
 
             {/* ─── Hero Section ───────────────────────────────────────── */}
-            <section id="home" className="relative md:min-h-[75vh] flex items-center pt-24 pb-12 md:pt-32 md:pb-16 overflow-hidden" style={{ background: "radial-gradient(ellipse 100% 100% at 50% 0%, #fef3c7 0%, #fdf8f0 40%, #f5f0e8 80%, #ede8dd 100%)" }}>
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wMikiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
+            <section id="home" className="relative min-h-[90vh] flex items-center pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+                {/* Background Carousel */}
+                <div className="absolute inset-0 z-0">
+                    <div 
+                        className="flex h-full w-full transition-transform duration-700 ease-in-out"
+                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    >
+                        {carouselImages.map((src, idx) => (
+                            <div 
+                                key={idx} 
+                                className="relative min-w-full h-full"
+                            >
+                                <Image
+                                    src={src}
+                                    alt={`Hero background ${idx + 1}`}
+                                    fill
+                                    className="object-cover"
+                                    priority={idx === 0}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                {/* Overlay for clarity */}
+                <div className="absolute inset-0 z-0 bg-white/50" />
                 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className="grid lg:grid-cols-12 gap-12 md:gap-16 lg:gap-8 items-center">
-                        {/* Left Content */}
-                        <div className="lg:col-span-7 flex flex-col items-start text-left">
-                            <div className="animate-fade-up inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-stone-200/50 rounded-full text-stone-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
-                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                                Centre of Excellence
-                            </div>
-                            
-                            <h1 className="animate-fade-up-delay-1 text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-stone-900 mb-6 md:mb-8 leading-[1.05] tracking-tight">
-                                Indian<br />
-                                Knowledge <span className="text-amber-900 italic font-serif pr-2">Systems</span>
-                            </h1>
-                            
-                            <p className="animate-fade-up-delay-2 text-base md:text-xl text-stone-600 mb-8 md:mb-10 max-w-xl leading-relaxed font-light">
-                                Amrita Vishwa Vidyapeetham, Kochi Campus invites you to explore the scientific, philosophical, and artistic heritage of ancient India through rigorous academic research and digital preservation.
-                            </p>
-                            
-                            <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                                <a
-                                    href="https://manuscripts.ikskochi.org"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-stone-900 text-white rounded-full font-semibold text-sm hover:bg-amber-900 transition-all duration-300 shadow-xl shadow-stone-900/10 hover:shadow-amber-900/20"
-                                >
-                                    Explore Digital Archive
-                                    <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                                        <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+                        <h1 className="animate-fade-up-delay-1 text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-stone-900 mb-6 md:mb-8 leading-[1.05] tracking-tight drop-shadow-md">
+                            Indian<br />
+                            Knowledge <span className="text-amber-900 italic font-serif pr-2">Systems</span>
+                        </h1>
                         
-                        {/* Right Stats Bento Box */}
-                        <div className="lg:col-span-5 grid grid-cols-2 gap-4 animate-fade-up-delay-2">
-                            {[
-                                { number: "5,000+", label: "Archived Manuscripts", color: "bg-white", textCol: "text-amber-900" },
-                                { number: "25", label: "Years of Excellence", color: "bg-amber-50", textCol: "text-amber-900" },
-                            ].map((stat, i) => (
-                                <div key={i} className={`${stat.color} p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl md:rounded-3xl border ${stat.color === 'bg-stone-900' ? 'border-stone-800' : 'border-stone-200/50'} shadow-sm flex flex-col justify-center min-h-[70px] md:min-h-[160px] lg:min-h-[200px] group hover:-translate-y-1 transition-transform duration-300`}>
-                                    <div className={`text-2xl md:text-4xl lg:text-5xl font-black mb-0.5 md:mb-2 tracking-tight ${stat.textCol}`}>{stat.number}</div>
-                                    <div className={`text-[8px] md:text-[10px] lg:text-xs font-bold uppercase tracking-widest text-stone-500 leading-snug`}>{stat.label}</div>
-                                </div>
-                            ))}
+                        <p className="animate-fade-up-delay-2 text-base md:text-xl text-stone-900 mb-8 md:mb-10 max-w-2xl leading-relaxed font-medium drop-shadow-md">
+                            Amrita Vishwa Vidyapeetham, Kochi Campus invites you to explore the scientific, philosophical, and artistic heritage of ancient India through rigorous academic research and digital preservation.
+                        </p>
+                        
+                        <div className="animate-fade-up-delay-3 flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+                            <a
+                                href="https://manuscripts.ikskochi.org"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-stone-900 text-white rounded-full font-semibold text-sm hover:bg-amber-900 transition-all duration-300 shadow-xl shadow-stone-900/10 hover:shadow-amber-900/20"
+                            >
+                                Explore Digital Archive
+                                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                                    <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </span>
+                            </a>
                         </div>
                     </div>
+                </div>
+
+                {/* Carousel Navigation Dots */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+                    {carouselImages.map((_, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setCurrentSlide(idx)}
+                            className={`rounded-full transition-all duration-300 ${
+                                idx === currentSlide 
+                                    ? "w-8 h-2 bg-amber-600 shadow-md" 
+                                    : "w-2 h-2 bg-stone-900/30 hover:bg-stone-900/50"
+                            }`}
+                            aria-label={`Go to slide ${idx + 1}`}
+                        />
+                    ))}
                 </div>
             </section>
 
@@ -220,10 +252,13 @@ export default function HomePage() {
                         </div>
                         <div className="md:w-1/2 flex flex-col gap-6 text-xl text-stone-500 font-light leading-relaxed md:pt-14">
                             <p>
-                                The IKS Centre at Amrita Vishwa Vidyapeetham is dedicated to the systematic study, preservation, and dissemination of traditional Indian sciences, arts, and philosophy.
+                                India’s intellectual legacy in Mathematics, Physics, and Astronomy is a significant chapter in global scientific history. The IKS Centre for Mathematical, Physical and Astronomical Studies was established to connect ancient Indian knowledge with modern research, ensuring its continued relevance.
+                            </p>
+                            <p className="text-stone-500">
+                                Founded in March 2025 at Amrita Vishwa Vidyapeetham, Kochi Campus, the Centre focuses on the Kerala School of Mathematics and Astronomy (14th–16th centuries), led by Sangamagrama Madhava. This tradition made early contributions to calculus, trigonometry, and astronomy.
                             </p>
                             <p className="text-stone-400">
-                                Our mission is to uncover the relevance of ancient texts in contemporary contexts, conducting interdisciplinary research that connects traditional knowledge with modern scientific inquiry.
+                                The Centre promotes research on ancient texts, including manuscript translation, preservation, and traditional computational methods, aiming to integrate classical insights with contemporary science.
                             </p>
                             <div className="mt-6 flex items-center gap-4 bg-stone-50 p-4 rounded-2xl border border-stone-100 self-start">
                                 <div className="flex -space-x-3">
@@ -239,7 +274,7 @@ export default function HomePage() {
                         </div>
                     </div>
 
-                    {/* Feature Cards Grid */}
+                    {/* Feature Cards Grid
                     <div className="grid md:grid-cols-3 gap-6">
                         {[
                             {
@@ -273,10 +308,85 @@ export default function HomePage() {
                             </div>
                         ))}
                     </div>
+                    */}
                 </div>
             </section>
 
+            {/* ─── Vision Section ──────────────────────────────────────── */}
+            <section id="vision" className="py-16 md:py-20 bg-stone-50 relative border-t border-stone-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-4xl">
+                        <div className="flex items-center gap-3 mb-6">
+                            <span className="w-2 h-2 rounded-full bg-amber-600" />
+                            <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">Our Future</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-8 tracking-tight">
+                            Vision
+                        </h2>
+                        <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed">
+                            To become a centre of excellence dedicated to reviving and advancing the scientific heritage of the Kerala School of Mathematics and Astronomy, while extending it’s analytical spirit to the broader realms of physical sciences. The Centre envisions fostering a harmonious integration of ancient wisdom and modern scientific exploration, nurturing innovative, value-based research that contributes to sustainable scientific and societal advancement.
+                        </p>
+                    </div>
+                </div>
+            </section>
 
+            {/* ─── Mission Section ──────────────────────────────────────── */}
+            <section id="mission" className="py-16 md:py-20 bg-white relative border-t border-stone-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end">
+                    <div className="max-w-4xl text-left md:text-right">
+                        <div className="flex items-center md:justify-end gap-3 mb-6">
+                            <span className="w-2 h-2 rounded-full bg-amber-600" />
+                            <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">Our Purpose</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-8 tracking-tight">
+                            Mission
+                        </h2>
+                        <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed">
+                            To explore, preserve, and promote the profound scientific insights of India’s intellectual heritage- particularly the legacy of the Kerala School of Mathematics and Astronomy- while broadening it’s analytical spirit to encompass the physical sciences through rigorous research, documentation, and academic collaboration. The Centre aspires to become and internationally recognized centre of excellence that bridges traditional analytical wisdom with contemporary scientific inquiry. Through interdisciplinary studies, value-based education, and authentic scholarship, it seeks to foster innovation, critical inquiry, and cultural appreciation, contributing to the advancement of science and the creation of a sustainable and enlightened society.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* ─── Objectives Section ───────────────────────────────────── */}
+            <section id="objectives" className="py-16 md:py-24 bg-stone-50 relative border-t border-stone-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+                        <div className="lg:w-1/3">
+                            <div className="flex items-center gap-3 mb-6">
+                                <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
+                                <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">Our Goals</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl lg:text-5xl font-black text-stone-900 mb-6 tracking-tight leading-[1.1]">
+                                Objectives of <br/>the <span className="text-amber-900 italic font-serif">Centre</span>
+                            </h2>
+                            <p className="text-stone-500 font-light leading-relaxed mb-8 hidden lg:block">
+                                Key initiatives driving our mission to preserve, study, and disseminate traditional Indian sciences and arts.
+                            </p>
+                        </div>
+                        
+                        <div className="lg:w-2/3 grid sm:grid-cols-2 gap-4 lg:gap-5">
+                            {[
+                                "Digital Archive of Kerala School of Mathematics and Astronomy.",
+                                "Reflection of Ancient Indian Eco- Material Wisdom in Nanomaterials.",
+                                "Reawakening of Ancient Knowledge Treasures.",
+                                "A search database and catalogue of interactive manuscripts.",
+                                "Research publications in the ancient Kerala School of Mathematics, Physical Science, and Astronomy.",
+                                "Curriculum materials for the integration of IKS in the educational environment.",
+                                "Conception of international agreements and memorandums.",
+                                "Capacity building workshops, International Conferences, & Symposia."
+                            ].map((obj, i) => (
+                                <div key={i} className="group p-5 md:p-6 rounded-2xl bg-white border border-stone-200 hover:border-amber-300 hover:shadow-xl hover:-translate-y-1 transition-all flex items-start gap-4 cursor-default">
+                                    <div className="w-6 h-6 rounded-full bg-amber-50 group-hover:bg-amber-500 text-amber-600 group-hover:text-white flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors border border-amber-100 group-hover:border-amber-500">
+                                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                                    </div>
+                                    <p className="text-sm md:text-base text-stone-600 group-hover:text-stone-900 font-medium leading-snug transition-colors">{obj}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* ─── Manuscripts Section (Light Mode Design) ─────────────── */}
             <section id="manuscripts" className="py-16 md:py-20 bg-[#F5F2EA] text-stone-900 relative overflow-hidden">

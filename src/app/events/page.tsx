@@ -76,12 +76,10 @@ export default function EventsPage() {
         <div className="min-h-screen bg-stone-50 font-sans selection:bg-amber-100 selection:text-amber-900">
 
             {/* ─── Navigation ─────────────────────────────────────────── */}
-            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "pt-3 pb-0 px-4 sm:px-6" : ""}`}>
+            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6`}>
                 <nav
-                    className={`transition-all duration-500 ${
-                        isScrolled
-                            ? "max-w-5xl mx-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg shadow-stone-200/60 ring-1 ring-stone-200/80 px-5"
-                            : "bg-transparent px-4 sm:px-6 lg:px-8 border-b border-white/20"
+                    className={`transition-all duration-500 max-w-5xl mx-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-5 ${
+                        isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
                     }`}
                 >
                     <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
@@ -103,7 +101,7 @@ export default function EventsPage() {
                                 />
                             </div>
                             <div className="leading-none">
-                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 ${isScrolled ? "text-base" : "text-lg"}`}>IKS Amrita</p>
+                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 ${isScrolled ? "text-base" : "text-lg"}`}>Indian Knowledge Systems, Amrita (IKS)</p>
                                 {!isScrolled && (
                                     <p className="text-[10px] uppercase tracking-[0.18em] text-stone-400 font-semibold mt-0.5">Kochi Campus</p>
                                 )}
