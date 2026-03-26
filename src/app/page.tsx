@@ -65,8 +65,8 @@ export default function HomePage() {
                     <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
 
                         {/* Logo */}
-                        <a href="#home" className="flex items-center gap-3 group flex-shrink-0" aria-label="IKS Amrita Home">
-                            <div className={`flex items-center justify-center rounded-xl overflow-hidden ring-1 transition-all duration-500 ${
+                        <a href="#home" className="flex items-center gap-3 group min-w-0" aria-label="IKS Amrita Home">
+                            <div className={`flex items-center justify-center rounded-xl overflow-hidden ring-1 transition-all duration-500 flex-shrink-0 ${
                                 isScrolled
                                     ? "w-9 h-9 ring-stone-200 group-hover:ring-amber-300"
                                     : "w-11 h-11 ring-stone-200/60 group-hover:ring-amber-300 shadow-sm"
@@ -80,10 +80,14 @@ export default function HomePage() {
                                     priority
                                 />
                             </div>
-                            <div className="leading-none">
-                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 ${isScrolled ? "text-base" : "text-lg"}`}>Indian Knowledge Systems, Amrita (IKS)</p>
+                            <div className="leading-tight min-w-0 pr-2">
+                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 whitespace-normal ${isScrolled ? "text-xs md:text-base" : "text-sm md:text-lg"}`}>
+                                    Indian Knowledge Systems, Amrita (IKS)
+                                </p>
                                 {!isScrolled && (
-                                    <p className="text-[10px] uppercase tracking-[0.18em] text-stone-400 font-semibold mt-0.5">Kochi Campus</p>
+                                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] text-stone-400 font-semibold mt-0.5 whitespace-normal">
+                                        Kochi Campus
+                                    </p>
                                 )}
                             </div>
                         </a>
@@ -113,7 +117,7 @@ export default function HomePage() {
                         </div>
 
                         {/* CTA + Mobile toggle */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 flex-shrink-0">
                             {/* Mobile Menu Button */}
                             <button
                                 className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
