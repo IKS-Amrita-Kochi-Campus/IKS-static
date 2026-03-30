@@ -29,7 +29,7 @@ export default function EventsPage() {
         if (carouselImages.length <= 1) return;
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-        }, 5000);
+        }, 3000);
         return () => clearInterval(timer);
     }, [carouselImages.length]);
 
