@@ -499,19 +499,22 @@ export default function HomePage() {
                                 name: "Dr. K. SREEKANTH",
                                 role: "Principal Investigator",
                                 email: "ksreekanth@kh.amrita.edu",
-                                image: "/assets/team/ksreekanth.jpg"
+                                image: "/assets/team/ksreekanth.jpg",
+                                align: "object-top"
                             },
                             {
                                 name: "Dr. U. KRISHNAKUMAR",
                                 role: "Co-Principal Investigator",
                                 email: "ukrishnakumar@kh.amrita.edu",
-                                image: "/assets/team/ukrishnakumar.png"
+                                image: "/assets/team/ukrishnakumar.png",
+                                align: "object-top"
                             },
                             {
                                 name: "Manoranjini T R",
                                 role: "Research Assistant",
                                 email: "trmanoranjini@kh.amrita.edu",
-                                image: "/assets/team/manoranjini.jpg"
+                                image: "/assets/team/manoranjini.jpg",
+                                align: "object-top"
                             }
                         ].map((member, i) => (
                             <div key={i} className="group flex flex-col items-center bg-white p-8 rounded-[2rem] border border-stone-200 hover:border-amber-300 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center shadow-sm">
@@ -520,7 +523,7 @@ export default function HomePage() {
                                         src={member.image}
                                         alt={member.name}
                                         fill
-                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className={`object-cover ${member.align} group-hover:scale-110 transition-transform duration-700`}
                                     />
                                 </div>
                                 <h3 className="text-xl font-bold text-stone-900 mb-1.5 group-hover:text-amber-900 transition-colors">{member.name}</h3>
