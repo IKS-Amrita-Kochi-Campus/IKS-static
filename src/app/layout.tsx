@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "IKS Amrita - Indian Knowledge Systems | Kochi Campus",
+  title: "IKS Amrita - Indian Knowledge Systems (IKS) Research Centre for Mathematical, Physical and Astronomical Sciences | Kochi Campus",
   description: "Explore the scientific, philosophical, and artistic heritage of ancient India through rigorous academic research and digital preservation at Amrita Vishwa Vidyapeetham, Kochi Campus.",
 };
 

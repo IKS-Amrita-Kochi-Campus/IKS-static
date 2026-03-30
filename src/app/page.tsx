@@ -11,9 +11,9 @@ export default function HomePage() {
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const carouselImages = [
+        "/assets/carousel/img3.jpg",
         "/assets/carousel/img1.jpg",
-        "/assets/carousel/img2.jpg",
-        "/assets/carousel/img3.jpg"
+        "/assets/carousel/img2.jpg"
     ];
 
     useEffect(() => {
@@ -62,14 +62,15 @@ export default function HomePage() {
                         isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
                     }`}
                 >
-                    <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
+                    <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-20" : "h-28"}`}>
 
                         {/* Logo */}
-                        <a href="#home" className="flex items-center gap-3 group min-w-0" aria-label="IKS Amrita Home">
+                        <a href="#home" className="flex items-center gap-6 group flex-shrink-0" aria-label="IKS Amrita Home">
+                            {/* IKS Logo */}
                             <div className={`flex items-center justify-center rounded-xl overflow-hidden ring-1 transition-all duration-500 flex-shrink-0 ${
                                 isScrolled
-                                    ? "w-9 h-9 ring-stone-200 group-hover:ring-amber-300"
-                                    : "w-11 h-11 ring-stone-200/60 group-hover:ring-amber-300 shadow-sm"
+                                    ? "w-12 h-12 ring-stone-200"
+                                    : "w-18 h-18 ring-stone-200/60 shadow-sm"
                             }`}>
                                 <Image
                                     src="/assets/iks.webp"
@@ -80,15 +81,31 @@ export default function HomePage() {
                                     priority
                                 />
                             </div>
-                            <div className="leading-tight min-w-0 pr-2">
-                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 whitespace-normal ${isScrolled ? "text-xs md:text-base" : "text-sm md:text-lg"}`}>
-                                    Indian Knowledge Systems, Amrita (IKS)
-                                </p>
-                                {!isScrolled && (
-                                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] text-stone-400 font-semibold mt-0.5 whitespace-normal">
-                                        Kochi Campus
-                                    </p>
-                                )}
+
+                            {/* Amrita University Logo */}
+                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
+                                isScrolled ? "h-10" : "h-14"
+                            }`}>
+                                <Image
+                                    src="/assets/AVV LOGO.png"
+                                    alt="Amrita Vishwa Vidyapeetham"
+                                    width={220}
+                                    height={56}
+                                    className="object-contain h-full w-auto"
+                                />
+                            </div>
+
+                            {/* Gov of India Logo */}
+                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
+                                isScrolled ? "h-12" : "h-18"
+                            }`}>
+                                <Image
+                                    src="/assets/moe_logo_final.png"
+                                    alt="Ministry of Education"
+                                    width={200}
+                                    height={72}
+                                    className="object-contain h-full w-auto"
+                                />
                             </div>
                         </a>
 
@@ -168,7 +185,7 @@ export default function HomePage() {
             </div>
 
             {/* ─── Hero Section ───────────────────────────────────────── */}
-            <section id="home" className="relative min-h-[90vh] flex items-center pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+            <section id="home" className="relative min-h-[90vh] flex items-center pt-36 pb-16 md:pt-44 md:pb-20 overflow-hidden bg-stone-950">
                 {/* Background Carousel */}
                 <div className="absolute inset-0 z-0">
                     <div 
@@ -191,17 +208,23 @@ export default function HomePage() {
                         ))}
                     </div>
                 </div>
-                {/* Overlay for clarity */}
-                <div className="absolute inset-0 z-0 bg-white/50" />
+                {/* High-Contrast Dark Overlay for White Text Legibility */}
+                <div className="absolute inset-0 z-0 bg-stone-950/50 mix-blend-multiply" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-b from-stone-950/70 via-stone-950/30 to-stone-950/50" />
                 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center">
-                    <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-                        <h1 className="animate-fade-up-delay-1 text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-stone-900 mb-6 md:mb-8 leading-[1.05] tracking-tight drop-shadow-md">
-                            Indian<br />
-                            Knowledge <span className="text-amber-900 italic font-serif pr-2">Systems</span>
+                    <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+                        <h1 className="animate-fade-up-delay-1 font-extrabold text-white mb-8 lg:mb-12 leading-[1.05] tracking-tight drop-shadow-2xl">
+                            <span className="text-5xl md:text-7xl lg:text-8xl block mb-6 outline-stone-900/10">
+                                Indian Knowledge <span className="text-amber-400 italic font-serif">Systems (IKS)</span>
+                            </span>
+                            <span className="text-xl md:text-3xl lg:text-4xl font-bold text-stone-100 max-w-5xl block mx-auto leading-tight mt-6 tracking-tight drop-shadow-lg">
+                                Research Centre for Mathematical, <br className="hidden md:block" />
+                                Physical and Astronomical Sciences
+                            </span>
                         </h1>
                         
-                        <p className="animate-fade-up-delay-2 text-base md:text-xl text-stone-900 mb-8 md:mb-10 max-w-2xl leading-relaxed font-medium drop-shadow-md">
+                        <p className="animate-fade-up-delay-2 text-base md:text-xl text-white/90 mb-8 md:mb-10 max-w-3xl leading-relaxed font-medium drop-shadow-lg">
                             Amrita Vishwa Vidyapeetham, Kochi Campus invites you to explore the scientific, philosophical, and artistic heritage of ancient India through rigorous academic research and digital preservation.
                         </p>
                         
@@ -223,21 +246,22 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                {/* Carousel Navigation Dots */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
-                    {carouselImages.map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrentSlide(idx)}
-                            className={`rounded-full transition-all duration-300 ${
-                                idx === currentSlide 
-                                    ? "w-8 h-2 bg-amber-600 shadow-md" 
-                                    : "w-2 h-2 bg-stone-900/30 hover:bg-stone-900/50"
-                            }`}
-                            aria-label={`Go to slide ${idx + 1}`}
-                        />
-                    ))}
-                </div>
+                {carouselImages.length > 1 && (
+                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+                        {carouselImages.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentSlide(idx)}
+                                className={`rounded-full transition-all duration-300 ${
+                                    idx === currentSlide 
+                                        ? "w-8 h-2 bg-amber-600 shadow-md" 
+                                        : "w-2 h-2 bg-stone-900/30 hover:bg-stone-900/50"
+                                }`}
+                                aria-label={`Go to slide ${idx + 1}`}
+                            />
+                        ))}
+                    </div>
+                )}
             </section>
 
             {/* ─── About Section ──────────────────────────────────────── */}
@@ -327,7 +351,7 @@ export default function HomePage() {
                         <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-8 tracking-tight">
                             Vision
                         </h2>
-                        <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed">
+                        <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed text-justify">
                             To become a centre of excellence dedicated to reviving and advancing the scientific heritage of the Kerala School of Mathematics and Astronomy, while extending it’s analytical spirit to the broader realms of physical sciences. The Centre envisions fostering a harmonious integration of ancient wisdom and modern scientific exploration, nurturing innovative, value-based research that contributes to sustainable scientific and societal advancement.
                         </p>
                     </div>
@@ -345,7 +369,7 @@ export default function HomePage() {
                         <h2 className="text-3xl md:text-5xl font-black text-stone-900 mb-8 tracking-tight">
                             Mission
                         </h2>
-                        <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed">
+                        <p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed text-justify">
                             To explore, preserve, and promote the profound scientific insights of India’s intellectual heritage- particularly the legacy of the Kerala School of Mathematics and Astronomy- while broadening it’s analytical spirit to encompass the physical sciences through rigorous research, documentation, and academic collaboration. The Centre aspires to become and internationally recognized centre of excellence that bridges traditional analytical wisdom with contemporary scientific inquiry. Through interdisciplinary studies, value-based education, and authentic scholarship, it seeks to foster innovation, critical inquiry, and cultural appreciation, contributing to the advancement of science and the creation of a sustainable and enlightened society.
                         </p>
                     </div>
@@ -372,7 +396,6 @@ export default function HomePage() {
                         <div className="lg:w-2/3 grid sm:grid-cols-2 gap-4 lg:gap-5">
                             {[
                                 "Digital Archive of Kerala School of Mathematics and Astronomy.",
-                                "Reflection of Ancient Indian Eco- Material Wisdom in Nanomaterials.",
                                 "Reawakening of Ancient Knowledge Treasures.",
                                 "A search database and catalogue of interactive manuscripts.",
                                 "Research publications in the ancient Kerala School of Mathematics, Physical Science, and Astronomy.",
@@ -502,31 +525,14 @@ export default function HomePage() {
                                         className="object-contain w-full h-full"
                                     />
                                 </div>
-                                <h3 className="text-lg text-stone-100 font-bold tracking-tight">IKS Amrita</h3>
+                                <h3 className="text-lg text-stone-100 font-bold tracking-tight">IKS Research Centre</h3>
                             </div>
                             <p className="max-w-xs mb-6 font-light leading-relaxed text-stone-500">
                                 Amrita Vishwa Vidyapeetham, Kochi Campus<br />
                                 Brahmasthanam, Edappally North P.O.<br />
                                 Kochi - 682 024, Kerala
                             </p>
-                            <div className="flex items-center gap-6 mb-6">
-                                <Image
-                                    src="/assets/AVV LOGO.png"
-                                    alt="Amrita Vishwa Vidyapeetham Kochi Campus"
-                                    width={200}
-                                    height={56}
-                                    className="object-contain h-10 w-auto opacity-60 hover:opacity-90 transition-opacity"
-                                    style={{ mixBlendMode: "screen" }}
-                                />
-                                <Image
-                                    src="/assets/IMG-20260128-WA0120.jpg"
-                                    alt="Ministry of Education, Government of India"
-                                    width={56}
-                                    height={56}
-                                    className="object-contain h-10 w-auto opacity-60 hover:opacity-90 transition-opacity rounded"
-                                    style={{ mixBlendMode: "screen" }}
-                                />
-                            </div>
+
                             <div className="flex gap-5">
                                 <a href="#" className="hover:text-amber-500 transition-colors text-xs font-medium uppercase tracking-wider">Twitter</a>
                                 <a href="#" className="hover:text-amber-500 transition-colors text-xs font-medium uppercase tracking-wider">LinkedIn</a>

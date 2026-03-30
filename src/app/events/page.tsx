@@ -20,6 +20,18 @@ export default function EventsPage() {
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const carouselImages = events
+        .flatMap(event => (event.images || []).map(img => `https://api.ikskochi.org${img}`));
+
+    useEffect(() => {
+        if (carouselImages.length <= 1) return;
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [carouselImages.length]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -82,33 +94,50 @@ export default function EventsPage() {
                         isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
                     }`}
                 >
-                    <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-16" : "h-20"}`}>
+                    <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-14" : "h-20"}`}>
 
                         {/* Logo */}
-                        <Link href="/#home" className="flex items-center gap-3 group min-w-0" aria-label="IKS Amrita Home">
+                        <Link href="/#home" className="flex items-center gap-4 group flex-shrink-0" aria-label="IKS Amrita Home">
+                            {/* IKS Logo */}
                             <div className={`flex items-center justify-center rounded-xl overflow-hidden ring-1 transition-all duration-500 flex-shrink-0 ${
                                 isScrolled
-                                    ? "w-9 h-9 ring-stone-200 group-hover:ring-amber-300"
-                                    : "w-11 h-11 ring-stone-200/60 group-hover:ring-amber-300 shadow-sm"
+                                    ? "w-8 h-8 ring-stone-200"
+                                    : "w-12 h-12 ring-stone-200/60 shadow-sm"
                             }`}>
                                 <Image
                                     src="/assets/iks.webp"
                                     alt="IKS Amrita Logo"
-                                    width={44}
-                                    height={44}
+                                    width={40}
+                                    height={40}
                                     className="object-contain w-full h-full"
                                     priority
                                 />
                             </div>
-                            <div className="leading-tight min-w-0 pr-2">
-                                <p className={`font-bold text-stone-900 tracking-tight transition-all duration-500 whitespace-normal ${isScrolled ? "text-xs md:text-base" : "text-sm md:text-lg"}`}>
-                                    Indian Knowledge Systems, Amrita (IKS)
-                                </p>
-                                {!isScrolled && (
-                                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] text-stone-400 font-semibold mt-0.5 whitespace-normal">
-                                        Kochi Campus
-                                    </p>
-                                )}
+
+                            {/* Amrita University Logo */}
+                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
+                                isScrolled ? "h-7" : "h-10"
+                            }`}>
+                                <Image
+                                    src="/assets/AVV LOGO.png"
+                                    alt="Amrita Vishwa Vidyapeetham"
+                                    width={160}
+                                    height={40}
+                                    className="object-contain h-full w-auto"
+                                />
+                            </div>
+
+                            {/* Gov of India Logo */}
+                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
+                                isScrolled ? "h-9" : "h-12"
+                            }`}>
+                                <Image
+                                    src="/assets/moe_logo_final.png"
+                                    alt="Ministry of Education"
+                                    width={140}
+                                    height={48}
+                                    className="object-contain h-full w-auto"
+                                />
                             </div>
                         </Link>
 
@@ -137,6 +166,7 @@ export default function EventsPage() {
 
                         {/* CTA + Mobile toggle */}
                         <div className="flex items-center gap-3 flex-shrink-0">
+                            {/* Mobile Menu Button */}
                             <button
                                 className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -184,21 +214,62 @@ export default function EventsPage() {
                 </nav>
             </div>
 
-            {/* ─── Header Section ───────────────────────────────────────── */}
-            <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden bg-white border-b border-stone-200">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMCwwLDAsMC4wMikiLz48L3N2Zz4=')] [mask-image:linear-gradient(to_bottom,white,transparent)]" />
-                
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-stone-900">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-stone-50 border border-stone-200/80 rounded-full text-stone-600 text-[10px] font-bold tracking-[0.2em] uppercase mb-6 shadow-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+            {/* ─── Hero Section with Carousel ─────────────────────────── */}
+            <section className="relative h-[65vh] md:h-[75vh] flex items-center justify-center overflow-hidden bg-stone-950 pt-28 md:pt-36">
+                {/* Carousel Background */}
+                <div className="absolute inset-0 z-0">
+                    {carouselImages.length > 0 ? (
+                        carouselImages.map((img, idx) => (
+                            <div
+                                key={idx}
+                                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                                    idx === currentSlide ? "opacity-100" : "opacity-0"
+                                }`}
+                            >
+                                <Image
+                                    src={img}
+                                    alt={`Event highlight ${idx + 1}`}
+                                    fill
+                                    className="object-cover scale-100"
+                                    priority={idx === 0}
+                                />
+                            </div>
+                        ))
+                    ) : (
+                        <div className="absolute inset-0 bg-stone-200" />
+                    )}
+                    {/* High-Contrast Dark Overlay for White Text Legibility */}
+                    <div className="absolute inset-0 bg-stone-950/40 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/40" />
+                </div>
+
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md shadow-sm border border-white/20 rounded-full text-white/90 text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                         Updates & Activities
                     </div>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.05] tracking-tight">
-                        Events & <span className="text-amber-900 italic font-serif">News</span>
+                    <h1 className="text-4xl md:text-5xl lg:text-7xl font-black mb-8 leading-[1.05] tracking-tight text-white drop-shadow-lg">
+                        Events & <span className="text-amber-400 italic font-serif">News</span>
                     </h1>
-                    <p className="max-w-2xl mx-auto text-stone-600 text-lg md:text-xl font-light leading-relaxed">
+                    <p className="max-w-2xl mx-auto text-stone-100 text-lg md:text-xl font-light leading-relaxed mb-4 drop-shadow-md">
                         Stay connected with the latest academic programs, symposiums, and cultural milestones taking place at IKS Amrita.
                     </p>
+                    
+                    {/* Carousel Dots - Updated for Dark Theme */}
+                    {carouselImages.length > 1 && (
+                        <div className="mt-12 flex justify-center gap-3">
+                            {carouselImages.map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => setCurrentSlide(idx)}
+                                    className={`h-1.5 transition-all duration-300 rounded-full ${
+                                        idx === currentSlide ? "w-8 bg-amber-400" : "w-2 bg-white/40 hover:bg-white/60"
+                                    }`}
+                                    aria-label={`Go to slide ${idx + 1}`}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
