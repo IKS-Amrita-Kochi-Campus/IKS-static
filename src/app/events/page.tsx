@@ -87,62 +87,60 @@ export default function EventsPage() {
     return (
         <div className="min-h-screen bg-stone-50 font-sans selection:bg-amber-100 selection:text-amber-900">
 
-            {/* ─── Navigation ─────────────────────────────────────────── */}
-            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6`}>
+            {/* ─── Navigation ──────────────�            {/* ─── Institutional Logo Block (Absolute Top Left) ───────────────── */}
+            <div className={`absolute top-6 left-6 md:top-10 md:left-10 z-[60] transition-all duration-500`}>
+                <Link href="/#home" className="flex items-center gap-6 group" aria-label="IKS Amrita Home">
+                    {/* IKS Logo */}
+                    <div className={`flex items-center justify-center transition-all duration-500 flex-shrink-0 w-20 h-20`}>
+                        <Image
+                            src="/assets/iks.webp"
+                            alt="IKS Amrita Logo"
+                            width={80}
+                            height={80}
+                            className="object-contain w-full h-full"
+                            priority
+                        />
+                    </div>
+
+                    {/* Amrita University Logo */}
+                    <div className={`flex items-center transition-all duration-500 flex-shrink-0 h-18`}>
+                        <Image
+                            src="/assets/AVV LOGO.png"
+                            alt="Amrita Vishwa Vidyapeetham"
+                            width={220}
+                            height={72}
+                            className="object-contain h-full w-auto"
+                        />
+                    </div>
+
+                    {/* Gov of India Logo */}
+                    <div className={`flex items-center transition-all duration-500 flex-shrink-0 mix-blend-screen h-24`}>
+                        <Image
+                            src="/assets/moe_logo_final.png"
+                            alt="Ministry of Education"
+                            width={220}
+                            height={96}
+                            className="object-contain h-full w-auto drop-shadow-md"
+                        />
+                    </div>
+                </Link>
+            </div>n h-full w-auto drop-shadow-md"
+                        />
+                    </div>
+                </Link>
+            </div>
+
+            {/* ─── Navigation Pill (Fixed Top Right) ──────────────────── */}
+            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-6 px-4 sm:px-6 pointer-events-none`}>
                 <nav
-                    className={`transition-all duration-500 max-w-5xl mx-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-5 ${
+                    className={`transition-all duration-500 max-w-fit ml-auto md:mr-4 rounded-full bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-4 pointer-events-auto ${
                         isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
                     }`}
                 >
-                    <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-14" : "h-20"}`}>
-
-                        {/* Logo */}
-                        <Link href="/#home" className="flex items-center gap-4 group flex-shrink-0" aria-label="IKS Amrita Home">
-                            {/* IKS Logo */}
-                            <div className={`flex items-center justify-center rounded-xl overflow-hidden ring-1 transition-all duration-500 flex-shrink-0 ${
-                                isScrolled
-                                    ? "w-8 h-8 ring-stone-200"
-                                    : "w-12 h-12 ring-stone-200/60 shadow-sm"
-                            }`}>
-                                <Image
-                                    src="/assets/iks.webp"
-                                    alt="IKS Amrita Logo"
-                                    width={40}
-                                    height={40}
-                                    className="object-contain w-full h-full"
-                                    priority
-                                />
-                            </div>
-
-                            {/* Amrita University Logo */}
-                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
-                                isScrolled ? "h-7" : "h-10"
-                            }`}>
-                                <Image
-                                    src="/assets/AVV LOGO.png"
-                                    alt="Amrita Vishwa Vidyapeetham"
-                                    width={160}
-                                    height={40}
-                                    className="object-contain h-full w-auto"
-                                />
-                            </div>
-
-                            {/* Gov of India Logo */}
-                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
-                                isScrolled ? "h-9" : "h-12"
-                            }`}>
-                                <Image
-                                    src="/assets/moe_logo_final.png"
-                                    alt="Ministry of Education"
-                                    width={140}
-                                    height={48}
-                                    className="object-contain h-full w-auto"
-                                />
-                            </div>
-                        </Link>
+                    <div className={`flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-12" : "h-16"}`}>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-7">
+                        <div className="hidden md:flex items-center gap-8 px-4">
                             {navLinks.map((link) => {
                                 const isActive = link.href === "/events";
                                 return (
@@ -164,14 +162,12 @@ export default function EventsPage() {
                             })}
                         </div>
 
-                        {/* CTA + Mobile toggle */}
-                        <div className="flex items-center gap-3 flex-shrink-0">
-                            {/* Mobile Menu Button */}
+                        {/* Mobile Toggle inside the pill */}
+                        <div className="flex md:hidden items-center p-1">
                             <button
-                                className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
+                                className="p-2 rounded-full text-stone-600 hover:bg-stone-100 transition-colors"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                                aria-expanded={isMenuOpen}
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     {isMenuOpen ? (
@@ -190,21 +186,21 @@ export default function EventsPage() {
                             isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                         }`}
                     >
-                        <div className={`px-2 pb-4 pt-2 space-y-1 border-t ${isScrolled ? "border-stone-100" : "border-white/20"}`}>
+                        <div className="px-4 pb-6 pt-2 space-y-2 border-t border-stone-100">
                             {navLinks.map((link) => {
                                 const isActive = link.href === "/events";
                                 return (
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-medium transition-colors text-sm ${
+                                        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium transition-colors text-sm ${
                                             isActive
                                                 ? "bg-amber-50 text-amber-900"
                                                 : "text-stone-700 hover:bg-stone-50 hover:text-stone-900"
                                         }`}
                                         onClick={() => setIsMenuOpen(false)}
                                     >
-                                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-amber-700 flex-shrink-0" />}
+                                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-amber-700" />}
                                         {link.label}
                                     </Link>
                                 );
