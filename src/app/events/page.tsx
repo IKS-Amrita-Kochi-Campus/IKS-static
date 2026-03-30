@@ -87,8 +87,8 @@ export default function EventsPage() {
     return (
         <div className="min-h-screen bg-stone-50 font-sans selection:bg-amber-100 selection:text-amber-900">
 
-            {/* ─── Institutional Logo Block (Fixed Top Left) ───────────────── */}
-            <div className={`fixed top-3 left-4 md:top-5 md:left-6 z-[60] transition-all duration-500`}>
+            {/* ─── Institutional Logo Block (Absolute Top Left) ───────────────── */}
+            <div className={`absolute top-3 left-4 md:top-5 md:left-6 z-[60] transition-all duration-500`}>
                 <Link href="/#home" className="flex items-center gap-3 md:gap-4 group bg-white/70 backdrop-blur-md md:bg-transparent md:backdrop-blur-none p-2 md:p-0 rounded-2xl md:rounded-none shadow-sm md:shadow-none ring-1 ring-stone-200/50 md:ring-0" aria-label="IKS Amrita Home">
                     {/* IKS Logo */}
                     <div className={`flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
