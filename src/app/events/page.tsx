@@ -87,62 +87,64 @@ export default function EventsPage() {
     return (
         <div className="min-h-screen bg-stone-50 font-sans selection:bg-amber-100 selection:text-amber-900">
 
+            {/* ─── Institutional Logo Block (Fixed Top Left) ───────────────── */}
+            <div className={`fixed top-3 left-4 md:top-5 md:left-6 z-[60] transition-all duration-500`}>
+                <Link href="/#home" className="flex items-center gap-3 md:gap-4 group bg-white/70 backdrop-blur-md md:bg-transparent md:backdrop-blur-none p-2 md:p-0 rounded-2xl md:rounded-none shadow-sm md:shadow-none ring-1 ring-stone-200/50 md:ring-0" aria-label="IKS Amrita Home">
+                    {/* IKS Logo */}
+                    <div className={`flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
+                        isScrolled
+                            ? "w-10 h-10 md:w-12 md:h-12"
+                            : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
+                    }`}>
+                        <Image
+                            src="/assets/iks.webp"
+                            alt="IKS Amrita Logo"
+                            width={80}
+                            height={80}
+                            className="object-contain w-full h-full"
+                            priority
+                        />
+                    </div>
+
+                    {/* Amrita University Logo */}
+                    <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
+                        isScrolled ? "h-8 md:h-10" : "h-12 md:h-14 lg:h-16"
+                    }`}>
+                        <Image
+                            src="/assets/AVV LOGO.png"
+                            alt="Amrita Vishwa Vidyapeetham"
+                            width={220}
+                            height={64}
+                            className="object-contain h-full w-auto"
+                        />
+                    </div>
+
+                    {/* Gov of India Logo */}
+                    <div className={`hidden sm:flex items-center transition-all duration-500 flex-shrink-0 ${
+                        isScrolled ? "h-10 md:h-12" : "h-16 md:h-18 lg:h-20"
+                    }`}>
+                        <Image
+                            src="/assets/moe_logo_final.png"
+                            alt="Ministry of Education"
+                            width={220}
+                            height={80}
+                            className="object-contain h-full w-auto"
+                        />
+                    </div>
+                </Link>
+            </div>
+
             {/* ─── Navigation ─────────────────────────────────────────── */}
-            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6`}>
+            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6 pointer-events-none flex justify-end`}>
                 <nav
-                    className={`transition-all duration-500 max-w-5xl mx-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-5 ${
+                    className={`transition-all duration-500 pointer-events-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-4 sm:px-5 ${
                         isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
                     }`}
                 >
-                    <div className={`max-w-7xl mx-auto flex justify-between items-center transition-all duration-500 ${isScrolled ? "h-14" : "h-20"}`}>
-
-                        {/* Logo */}
-                        <Link href="/#home" className="flex items-center gap-4 group flex-shrink-0" aria-label="IKS Amrita Home">
-                            {/* IKS Logo */}
-                            <div className={`flex items-center justify-center rounded-xl overflow-hidden ring-1 transition-all duration-500 flex-shrink-0 ${
-                                isScrolled
-                                    ? "w-8 h-8 ring-stone-200"
-                                    : "w-12 h-12 ring-stone-200/60 shadow-sm"
-                            }`}>
-                                <Image
-                                    src="/assets/iks.webp"
-                                    alt="IKS Amrita Logo"
-                                    width={40}
-                                    height={40}
-                                    className="object-contain w-full h-full"
-                                    priority
-                                />
-                            </div>
-
-                            {/* Amrita University Logo */}
-                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
-                                isScrolled ? "h-7" : "h-10"
-                            }`}>
-                                <Image
-                                    src="/assets/AVV LOGO.png"
-                                    alt="Amrita Vishwa Vidyapeetham"
-                                    width={160}
-                                    height={40}
-                                    className="object-contain h-full w-auto"
-                                />
-                            </div>
-
-                            {/* Gov of India Logo */}
-                            <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
-                                isScrolled ? "h-9" : "h-12"
-                            }`}>
-                                <Image
-                                    src="/assets/moe_logo_final.png"
-                                    alt="Ministry of Education"
-                                    width={140}
-                                    height={48}
-                                    className="object-contain h-full w-auto"
-                                />
-                            </div>
-                        </Link>
+                    <div className={`flex items-center gap-4 transition-all duration-500 ${isScrolled ? "h-12" : "h-14 sm:h-16"}`}>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-7">
+                        <div className="hidden md:flex items-center gap-6 lg:gap-7">
                             {navLinks.map((link) => {
                                 const isActive = link.href === "/events";
                                 return (
