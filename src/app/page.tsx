@@ -478,28 +478,77 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* ─── Contact Section ────────────────────────────────────── */}
-            <section id="contact" className="py-12 md:py-20 bg-stone-50 border-t border-stone-200/50">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-white rounded-3xl md:rounded-[3rem] border border-stone-200 shadow-xl md:shadow-2xl shadow-stone-200/30 py-10 md:py-16 px-5 md:px-12">
-                    <div className="flex items-center justify-center gap-3 mb-4 md:mb-8">
-                        <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
-                        <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+            {/* ─── Contact & Team Section ────────────────────────────────────── */}
+            <section id="contact" className="py-16 md:py-24 bg-stone-50 border-t border-stone-200/50 relative">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Header */}
+                    <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+                        <div className="flex items-center justify-center gap-3 mb-4">
+                            <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
+                            <span className="text-stone-400 font-bold text-xs uppercase tracking-widest">Get In Touch</span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-black text-stone-900 mb-6 tracking-tight">Meet the Team</h2>
+                        <p className="text-stone-500 text-lg md:text-xl font-light leading-relaxed">
+                            Reach out to our project investigators and research assistants for inquiries regarding the digital archive.
+                        </p>
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black text-stone-900 mb-4 md:mb-6 tracking-tight">Let's Connect</h2>
-                    <p className="text-stone-500 text-base md:text-xl font-light mb-8 md:mb-12 leading-relaxed max-w-2xl mx-auto">
-                        Reach out to learn more about our manuscript archives and digital preservation efforts.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+
+                    {/* Team Members Grid */}
+                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
+                        {[
+                            {
+                                name: "Dr. K. SREEKANTH",
+                                role: "Principal Investigator",
+                                email: "ksreekanth@kh.amrita.edu",
+                                image: "/assets/team/ksreekanth.jpg"
+                            },
+                            {
+                                name: "Dr. U. KRISHNAKUMAR",
+                                role: "Co-Principal Investigator",
+                                email: "ukrishnakumar@kh.amrita.edu",
+                                image: "/assets/team/ukrishnakumar.png"
+                            },
+                            {
+                                name: "Manoranjini T R",
+                                role: "Research Assistant",
+                                email: "trmanoranjini@kh.amrita.edu",
+                                image: "/assets/team/manoranjini.jpg"
+                            }
+                        ].map((member, i) => (
+                            <div key={i} className="group flex flex-col items-center bg-white p-8 rounded-[2rem] border border-stone-200 hover:border-amber-300 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center shadow-sm">
+                                <div className="relative w-32 h-32 md:w-40 md:h-40 mb-6 rounded-full overflow-hidden border-[6px] border-stone-50 shadow-inner group-hover:border-amber-50 group-hover:shadow-amber-900/10 transition-all duration-500">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                    />
+                                </div>
+                                <h3 className="text-xl font-bold text-stone-900 mb-1.5 group-hover:text-amber-900 transition-colors">{member.name}</h3>
+                                <p className="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-stone-400 mb-6">{member.role}</p>
+                                <a
+                                    href={`mailto:${member.email}`}
+                                    className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-amber-700 transition-colors font-medium mt-auto bg-stone-50 group-hover:bg-amber-50/50 px-5 py-2.5 rounded-full border border-stone-100 group-hover:border-amber-200"
+                                >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                    Email
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* General Contact Info - Bottom Bar */}
+                    <div className="flex flex-col sm:flex-row gap-5 justify-center items-center bg-white py-8 px-6 rounded-[2.5rem] border border-stone-200 shadow-xl shadow-stone-200/40 max-w-3xl mx-auto">
                         <a
                             href="mailto:iks@kh.amrita.edu"
-                            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-amber-900 text-white rounded-full font-bold text-sm hover:bg-amber-800 transition-all shadow-xl shadow-amber-900/10 hover:shadow-amber-900/20 hover:-translate-y-1"
+                            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-3.5 bg-amber-900 text-white rounded-full font-bold text-sm hover:bg-amber-800 transition-all shadow-md shadow-amber-900/20 hover:-translate-y-0.5"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                             iks@kh.amrita.edu
                         </a>
                         <a
                             href="tel:+918547619314"
-                            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 bg-white text-stone-800 border border-stone-200 rounded-full font-bold text-sm hover:bg-stone-50 hover:border-stone-300 transition-all hover:-translate-y-1"
+                            className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-3.5 bg-stone-100 text-stone-800 rounded-full font-bold text-sm hover:bg-stone-200 transition-all hover:-translate-y-0.5"
                         >
                             <svg className="w-4 h-4 text-amber-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                             +91 8547619314
