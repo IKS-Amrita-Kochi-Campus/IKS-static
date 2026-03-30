@@ -89,12 +89,12 @@ export default function EventsPage() {
 
             {/* ─── Institutional Logo Block (Absolute Top Left) ───────────────── */}
             <div className={`absolute top-3 left-4 md:top-5 md:left-6 z-[60] transition-all duration-500`}>
-                <Link href="/#home" className="flex items-center gap-3 md:gap-4 group bg-white/70 backdrop-blur-md md:bg-transparent md:backdrop-blur-none p-2 md:p-0 rounded-2xl md:rounded-none shadow-sm md:shadow-none ring-1 ring-stone-200/50 md:ring-0" aria-label="IKS Amrita Home">
+                <Link href="/#home" className="flex items-center gap-2 md:gap-4 group" aria-label="IKS Amrita Home">
                     {/* IKS Logo */}
                     <div className={`flex items-center justify-center transition-all duration-500 flex-shrink-0 ${
                         isScrolled
-                            ? "w-10 h-10 md:w-12 md:h-12"
-                            : "w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
+                            ? "w-8 h-8 md:w-10 md:h-10"
+                            : "w-11 h-11 md:w-16 md:h-16 lg:w-20 lg:h-20"
                     }`}>
                         <Image
                             src="/assets/iks.webp"
@@ -108,7 +108,7 @@ export default function EventsPage() {
 
                     {/* Amrita University Logo */}
                     <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
-                        isScrolled ? "h-8 md:h-10" : "h-12 md:h-14 lg:h-16"
+                        isScrolled ? "h-6 md:h-9" : "h-8 md:h-14 lg:h-16"
                     }`}>
                         <Image
                             src="/assets/AVV LOGO.png"
@@ -120,7 +120,7 @@ export default function EventsPage() {
                     </div>
 
                     {/* Gov of India Logo */}
-                    <div className={`hidden sm:flex items-center transition-all duration-500 flex-shrink-0 ${
+                    <div className={`flex items-center transition-all duration-500 flex-shrink-0 ${
                         isScrolled ? "h-10 md:h-12" : "h-16 md:h-18 lg:h-20"
                     }`}>
                         <Image
@@ -136,15 +136,14 @@ export default function EventsPage() {
 
             {/* ─── Navigation ─────────────────────────────────────────── */}
             <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6 pointer-events-none flex justify-end`}>
-                <nav
-                    className={`transition-all duration-500 pointer-events-auto rounded-2xl bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 px-4 sm:px-5 ${
-                        isScrolled ? "shadow-stone-200/60" : "shadow-stone-200/30"
-                    }`}
-                >
-                    <div className={`flex items-center gap-4 transition-all duration-500 ${isScrolled ? "h-12" : "h-14 sm:h-16"}`}>
-
+                <div className="relative pointer-events-auto flex flex-col items-end">
+                    <nav
+                        className={`transition-all duration-500 flex items-center md:rounded-2xl md:bg-white/95 md:backdrop-blur-xl md:shadow-lg md:ring-1 md:ring-stone-200/80 md:px-5 ${
+                            isScrolled ? "md:shadow-stone-200/60" : "md:shadow-stone-200/30"
+                        } ${isScrolled ? "h-12" : "h-14 sm:h-16"}`}
+                    >
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-6 lg:gap-7">
+                        <div className="hidden md:flex items-center gap-6 lg:gap-7 h-full">
                             {navLinks.map((link) => {
                                 const isActive = link.href === "/events";
                                 return (
@@ -167,10 +166,10 @@ export default function EventsPage() {
                         </div>
 
                         {/* CTA + Mobile toggle */}
-                        <div className="flex items-center gap-3 flex-shrink-0">
-                            {/* Mobile Menu Button */}
+                        <div className="flex md:hidden items-center justify-end">
+                            {/* Mobile Menu Button - Floating Circle */}
                             <button
-                                className="md:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100 transition-colors"
+                                className="p-3 rounded-full bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 text-stone-600 hover:bg-stone-100 transition-all duration-300 pointer-events-auto"
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                                 aria-expanded={isMenuOpen}
@@ -184,15 +183,15 @@ export default function EventsPage() {
                                 </svg>
                             </button>
                         </div>
-                    </div>
+                    </nav>
 
-                    {/* Mobile Menu */}
+                    {/* Mobile Menu Dropdown Panel */}
                     <div
-                        className={`md:hidden overflow-hidden transition-all duration-300 ${
-                            isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                        className={`md:hidden absolute top-full right-0 mt-3 w-48 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl ring-1 ring-stone-200/80 overflow-hidden transition-all duration-300 origin-top-right ${
+                            isMenuOpen ? "scale-100 opacity-100 translate-y-0 pointer-events-auto" : "scale-95 opacity-0 -translate-y-2 pointer-events-none"
                         }`}
                     >
-                        <div className={`px-2 pb-4 pt-2 space-y-1 border-t ${isScrolled ? "border-stone-100" : "border-white/20"}`}>
+                        <div className="p-2 space-y-1 flex flex-col">
                             {navLinks.map((link) => {
                                 const isActive = link.href === "/events";
                                 return (
@@ -213,7 +212,7 @@ export default function EventsPage() {
                             })}
                         </div>
                     </div>
-                </nav>
+                </div>
             </div>
 
             {/* ─── Hero Section with Carousel ─────────────────────────── */}
@@ -245,7 +244,7 @@ export default function EventsPage() {
                     <div className="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/20 to-stone-950/40" />
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md shadow-sm border border-white/20 rounded-full text-white/90 text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
                         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                         Updates & Activities
