@@ -135,30 +135,34 @@ export default function EventsPage() {
             </div>
 
             {/* ─── Navigation ─────────────────────────────────────────── */}
-            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 px-4 sm:px-6 pointer-events-none flex justify-end`}>
+            <div className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "pt-3 px-4 sm:px-6" : "pt-6 px-6 md:px-10"} pointer-events-none flex justify-end`}>
                 <div className="relative pointer-events-auto flex flex-col items-end">
                     <nav
-                        className={`transition-all duration-500 flex items-center md:rounded-2xl md:bg-white/95 md:backdrop-blur-xl md:shadow-lg md:ring-1 md:ring-stone-200/80 md:px-5 ${
-                            isScrolled ? "md:shadow-stone-200/60" : "md:shadow-stone-200/30"
-                        } ${isScrolled ? "h-12" : "h-14 sm:h-16"}`}
+                        className={`transition-all duration-500 flex items-center ${
+                            isScrolled 
+                                ? "md:rounded-full md:bg-white/95 md:backdrop-blur-xl md:shadow-lg md:ring-1 md:ring-stone-200/80 md:px-6 h-12 md:h-14" 
+                                : "md:bg-transparent h-12 md:h-14"
+                        }`}
                     >
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center gap-6 lg:gap-7 h-full">
+                        <div className="hidden md:flex items-center gap-7 lg:gap-9 h-full px-2">
                             {navLinks.map((link) => {
                                 const isActive = link.href === "/events";
                                 return (
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className={`relative text-[11px] font-bold uppercase tracking-[0.14em] transition-all duration-200 py-1 ${
-                                            isActive
-                                                ? "text-amber-900"
-                                                : "text-stone-500 hover:text-stone-900"
+                                        className={`relative text-[11px] lg:text-xs font-bold uppercase tracking-[0.15em] transition-all duration-300 py-1 ${
+                                            isScrolled
+                                                ? (isActive ? "text-amber-900" : "text-stone-500 hover:text-stone-900")
+                                                : (isActive ? "text-white" : "text-white/70 hover:text-white")
                                         }`}
                                     >
                                         {link.label}
                                         {isActive && (
-                                            <span className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-amber-800 rounded-full" />
+                                            <span className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full transition-colors duration-300 ${
+                                                isScrolled ? "bg-amber-800" : "bg-amber-400"
+                                            }`} />
                                         )}
                                     </Link>
                                 );
@@ -169,7 +173,11 @@ export default function EventsPage() {
                         <div className="flex md:hidden items-center justify-end">
                             {/* Mobile Menu Button - Floating Circle */}
                             <button
-                                className="p-3 rounded-full bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 text-stone-600 hover:bg-stone-100 transition-all duration-300 pointer-events-auto"
+                                className={`p-3 rounded-full transition-all duration-300 pointer-events-auto ${
+                                    isScrolled 
+                                        ? "bg-white/95 backdrop-blur-xl shadow-lg ring-1 ring-stone-200/80 text-stone-600 hover:bg-stone-100" 
+                                        : "bg-white/10 backdrop-blur-md text-white hover:bg-white/20 border border-white/20"
+                                }`}
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                                 aria-expanded={isMenuOpen}
