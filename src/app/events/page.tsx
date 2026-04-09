@@ -224,7 +224,7 @@ export default function EventsPage() {
             </div>
 
             {/* ─── Hero Section with Carousel ─────────────────────────── */}
-            <section className="relative h-[65vh] md:h-[75vh] flex items-center justify-center overflow-hidden bg-stone-950 pt-28 md:pt-36">
+            <section className="relative h-[85vh] md:h-[90vh] flex items-center justify-center overflow-hidden bg-stone-950 pt-28 md:pt-36">
                 {/* Carousel Background */}
                 <div className="absolute inset-0 z-0">
                     {carouselImages.length > 0 ? (
